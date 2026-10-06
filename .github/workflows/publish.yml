@@ -1,0 +1,25 @@
+name: publish
+
+# What is merged into main, published: each mod's new version a release of its own, and
+# the index the game reads (scripts/publish.sh).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/check.sh
+      - run: scripts/publish.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
