@@ -28,13 +28,16 @@ game's own look and sound. A mod can be one sound.
 | `sparks-gfx/` | blood, smoke, explosions, flames, chips |
 | `objects-gfx/`, `textures/objects/` | flags and kits |
 | `scenery-gfx/`, `textures/` | maps' scenery and polygon textures |
-| `sfx/` | the sounds, as `.wav` |
+| `sfx/` | the sounds, as `.wav`, `.mp3` or `.ogg` (a `.wav` is used first) |
+| `mod.ini` | `[SCALE]`: how big images are in the world; `[GOSTEK]`: where each of the soldier's parts and weapons is pinned (`Left_Thigh_CenterX=0.2`) |
+| `txt/font.ini` | the HUD's two fonts (`Font1File`, `Font2File`, a `.ttf` in `fonts/` or beside `mod.ini`), their widths and sizes |
 
 Images can be `.png` or `.bmp` (a `.png` is used before a `.bmp` of the same name), and
 pure green (`#00FF00`) is see-through, as in the original game. A file's name is matched
-whatever its case.
+whatever its case. `mod.ini` and `txt/font.ini` are written as the original game's are,
+and a key a mod leaves out keeps Classic's value.
 
-The game's own files, [Classic](https://github.com/soldatreloaded/soldatreloaded-odin/tree/main/assets/mods/builtin/Classic),
+The game's own files, [Classic](https://github.com/soldatreloaded/soldatreloaded-odin/tree/main/assets/mods/classic),
 are the place to start: copy the ones you want to change. The game's Mods page can also
 make you a copy of Classic in your `mods/` folder to work in, and uses a mod at once, so you
 can see a change as you make it.
