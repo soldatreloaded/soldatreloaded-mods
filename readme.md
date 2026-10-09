@@ -44,7 +44,7 @@ under it, then Classic. A mod can be one sound.
 
 | Folder | What is in it |
 |---|---|
-| `gostek-gfx/` | the soldier: `klata.png` (chest), `morda.png` (head), `noga.png`, `udo.png`, …, each with its mirrored `…2.png`; the second team's in `team2/`, the wounds in `ranny/`, the hair (`hair1`–`hair4`, `dred`) and headgear (`helm`, `kap`) beside them |
+| `gostek-gfx/` | the soldier: `klata.png` (chest), `morda.png` (head), `noga.png`, `udo.png`, …, each with its mirrored `…2.png`; the second team's in `team2/`, the wounds in `ranny/`, the hair (`hair1`–`hair4`, `dred`) and headgear (`helm`, `kap`) beside them; and the game's own (below) |
 | `weapons-gfx/` | the guns, held and dropped, their bullets, casings and clips |
 | `interface-gfx/` | the HUD: health, ammo and jet bars, icons, the cursor |
 | `sparks-gfx/` | blood, smoke, explosions, flames, chips |
@@ -53,6 +53,22 @@ under it, then Classic. A mod can be one sound.
 | `sfx/` | the sounds, as `.wav`, `.mp3` or `.ogg` (a `.wav` is used first) |
 | `mod.ini` | `[SCALE]`: how big images are in the world; `[GOSTEK]`: where each of the soldier's parts and weapons is pinned (`Left_Thigh_CenterX=0.2`) |
 | `txt/font.ini` | the HUD's two fonts (`Font1File`, `Font2File`, a `.ttf` in `fonts/` or beside `mod.ini`), their widths and sizes |
+
+Besides the original's, Soldat Reloaded's soldier has its own, which a mod can change too.
+Each image has its mirrored `…2.png`; the haircuts have `team2/` ones too:
+
+| File in `gostek-gfx/` | What it is |
+|---|---|
+| `hair5`, `hair6` | the waifu's fringe and bob |
+| `hair7` – `hair11` | the mullet, wolfcut, baldcut, afro and emo |
+| `helm3` | the waifu's headgear |
+| `backcap` | the backwards cap, in the shirt's colour |
+| `sunglasses_a`, `sunglasses_b` | the two sunglasses, over the head; the same size as `morda.png` |
+| `female/`, `waifu/`, `rat/`, `furry/` | the other styles' bodies and heads, laid out as `gostek-gfx/` itself |
+
+A mod for Soldat 1 dresses the male alone: the other styles wear its art where they look
+as the male does, and their own heads. **Show all players as the classic soldier**, in
+the game's Graphics, draws everyone as the male.
 
 Images can be `.png` or `.bmp` (a `.png` is used before a `.bmp` of the same name), and
 pure green (`#00FF00`) is see-through, as in the original game. A file's name is matched
