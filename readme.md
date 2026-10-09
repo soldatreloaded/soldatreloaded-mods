@@ -53,6 +53,7 @@ can see a change as you make it.
    ```json
    {
      "name": "MyMod",
+     "title": "My Mod",
      "version": "1.0.0",
      "author": "Your name",
      "description": "One or two sentences: what it looks and sounds like.",
@@ -61,7 +62,9 @@ can see a change as you make it.
    }
    ```
 
-   `name` is the folder's name; `version` is three numbers.
+   `name` is the folder's name; `version` is three numbers. `title` is optional: the name
+   the game shows, which may have spaces and capitals as you like, at most 48 characters
+   (`name`, if it has none).
 4. **Check it** (needs bash and [jq](https://jqlang.org)): `scripts/check.sh`. It says what
    is wrong, if anything. The same check runs on your pull request, so you can also skip
    this and read its result there.
@@ -105,6 +108,7 @@ Nothing here is published by hand. When a pull request is merged into `main`,
   "mods": [
     {
       "name": "NoNameMod",
+      "title": "NoNameMod",
       "version": "1.0.0",
       "author": "Calp",
       "description": "…",

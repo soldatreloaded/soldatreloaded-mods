@@ -1,4 +1,4 @@
-# Remastered
+# Remastered Sounds
 
 Soldat's sounds remastered by **Coso**, licensed under the Creative Commons Attribution
 4.0 International licence (CC BY 4.0); the full text is in [LICENSE.txt](LICENSE.txt).
