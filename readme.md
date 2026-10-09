@@ -10,15 +10,37 @@ can wear a different one.
 
 ## Installing a mod
 
-Take the mod's zip from the [releases](../../releases), unpack it into a folder of the
-game's `mods/` named as the mod (`mods/NoNameMod/`), and pick it on the game's **Mods**
-page. A browser of the mods here, on that page, is on its way.
+**From the game:** on the **Mods** page, **Get mods** lists every mod here. **Install**
+puts it in the game's `mods/` folder and turns it on.
+
+**By hand:** a mod is an `.smod` file, a zip under another name, as OpenSoldat's are.
+Take the mod's zip from the [releases](../../releases), rename it from `NoNameMod.zip` to
+`NoNameMod.smod`, and put it in the game's `mods/` folder, beside `classic/`. Don't
+unpack it. An OpenSoldat `.smod` goes in the same way.
+
+Then, on the **Mods** page, **Installed mods**, turn it **On**.
+
+**Several at once:** any number of mods can be on together, in an order. Each file is
+taken from the top mod that has it, then from Classic, the game's own look and sound, which
+is always under them all. So a mod of the soldier's art and a mod of sounds are worn
+together, and a mod higher up wins where two change the same file. **Up** and **Down**
+change the order.
+
+**From your old Soldat:** on **Get mods**, **From your Soldat 1.7.1** makes a mod of the
+art and sounds you changed in an original Soldat 1.7.1: the game finds its folder where
+it is usually installed, or you type it. Only what differs from the game as it came goes
+in.
+
+**If a mod changes nothing:** the Mods page says what each mod changes (graphics, sounds,
+fonts, `mod.ini`), and warns when a mod holds nothing the game uses. Its files must be in
+`gostek-gfx/`, `sfx/` and the rest (below), at its root. A zip whose files sit one
+folder down (`MyMod/gostek-gfx/...`) is read from there.
 
 ## Making a mod
 
 A mod is laid out as an OpenSoldat or original Soldat mod is, so most old mods work as
-they are. It holds only what it changes: anything it doesn't have comes from Classic, the
-game's own look and sound. A mod can be one sound.
+they are. It holds only what it changes: anything it doesn't have comes from the mods
+under it, then Classic. A mod can be one sound.
 
 | Folder | What is in it |
 |---|---|
@@ -37,10 +59,16 @@ pure green (`#00FF00`) is see-through, as in the original game. A file's name is
 whatever its case. `mod.ini` and `txt/font.ini` are written as the original game's are,
 and a key a mod leaves out keeps Classic's value.
 
+A mod's `mod.ini` sizes and pins only that mod's own images; a mod without one is sized
+by Classic's. Art drawn at the original game's old, small size (before Soldat 1.6) wants
+a scale of 1 for its folders (`gostek-gfx=1`, `gostek-gfx/team2=1`, ...); without it, the
+game finds such a folder by its images' size and draws it so anyway.
+
 The game's own files, [Classic](https://github.com/soldatreloaded/soldatreloaded-odin/tree/main/assets/mods/classic),
-are the place to start: copy the ones you want to change. The game's Mods page can also
-make you a copy of Classic in your `mods/` folder to work in, and uses a mod at once, so you
-can see a change as you make it.
+are the place to start: copy the ones you want to change. To work on a mod, make it a
+folder of `mods/` rather than an `.smod` (the Mods page's **New mod** makes an empty
+one): the game reads a folder as it reads an `.smod`, and turning the mod off and on
+again shows what you changed. Zip it, and name it `.smod`, to share it.
 
 ## Adding your mod here
 
