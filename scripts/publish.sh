@@ -4,9 +4,9 @@
 #   - each mod's version is a release of its own, tagged <name>-<version>, holding the
 #     mod as <name>.zip (its folder's files at the zip's root). A version released
 #     already is left as it is: to publish a change, raise the version.
-#   - the "index" release holds mods.json: every mod's newest version, where its zip is,
-#     its size and SHA-256. The game's mod browser reads it from
-#     https://github.com/<repo>/releases/download/index/mods.json
+#   - the "index" release holds mods.json: every mod's newest version, the title it is
+#     shown by (its name, without one), where its zip is, its size and SHA-256. The
+#     game's mod browser reads it from https://github.com/<repo>/releases/download/index/mods.json
 #
 # Needs bash, jq, zip, sha256sum and gh, with GH_TOKEN and GITHUB_REPOSITORY set.
 set -euo pipefail
@@ -33,7 +33,7 @@ for dir in mods/*/; do
   else
     (cd "$dir" && find . -type f -print | LC_ALL=C sort | zip -q -X "../../$zip" -@)
     gh release create "$tag" "$zip" --repo "$repo" --latest=false \
-      --title "$name $version" --notes "$(jq -r .description "$about")"
+      --title "$(jq -r '.title // .name' "$about") $version" --notes "$(jq -r .description "$about")"
     echo "$tag: released"
   fi
 
@@ -41,7 +41,7 @@ for dir in mods/*/; do
   sha256=$(sha256sum "$zip" | cut -d' ' -f1)
   url="https://github.com/$repo/releases/download/$tag/$name.zip"
   entries+=("$(jq -c --arg url "$url" --argjson size "$size" --arg sha256 "$sha256" \
-    '{name, version, author, description, licence, source: (.source // ""), url: $url, size: $size, sha256: $sha256}' "$about")")
+    '{name, title: (.title // .name), version, author, description, licence, source: (.source // ""), url: $url, size: $size, sha256: $sha256}' "$about")")
 done
 
 printf '%s\n' "${entries[@]}" | jq -s '{format: 1, mods: (. | sort_by(.name | ascii_downcase))}' > "$dist/mods.json"

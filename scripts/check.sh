@@ -44,6 +44,13 @@ for dir in "${dirs[@]}"; do
   if [[ $(jq -r '.name // ""' "$about") != "$name" ]]; then
     problem "$name: about.json's name isn't the folder's"
   fi
+  # the title, if it has one: the name the game shows, spaces and all
+  if jq -e 'has("title")' "$about" >/dev/null; then
+    title=$(jq -r '.title | strings' "$about")
+    if [[ -z ${title// /} || ${#title} -gt 48 ]]; then
+      problem "$name: about.json's title is a name of up to 48 characters, not only spaces"
+    fi
+  fi
   if [[ ! $(jq -r '.version // ""' "$about") =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     problem "$name: about.json's version is three numbers, as 1.0.0"
   fi
